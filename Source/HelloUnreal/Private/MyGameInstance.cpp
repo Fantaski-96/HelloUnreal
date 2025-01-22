@@ -298,42 +298,43 @@ void UMyGameInstance::Init()
 	//0은 가위
 	//1은 바위
 	//2는 보
+	
+	// 가위바위보 Gemini 코드
+	int32 Enemy = FMath::RandRange(0, 2);
+	int32 MyValue = FMath::RandRange(0, 2);
 
-	//int32 Enemy = FMath::RandRange(0, 2);
-	//int32 MyValue = FMath::RandRange(0, 2);
+	FString EnemyChoiceString;
+    FString MyChoiceString;
 
-	//FString EnemyChoiceString;
- //   FString MyChoiceString;
+    switch (Enemy)
+    {
+    case 0: EnemyChoiceString = TEXT("가위"); break;
+    case 1: EnemyChoiceString = TEXT("바위"); break;
+    case 2: EnemyChoiceString = TEXT("보"); break;
+    }
 
- //   switch (Enemy)
- //   {
- //   case 0: EnemyChoiceString = TEXT("가위"); break;
- //   case 1: EnemyChoiceString = TEXT("바위"); break;
- //   case 2: EnemyChoiceString = TEXT("보"); break;
- //   }
+    switch (MyValue)
+    {
+    case 0: MyChoiceString = TEXT("가위"); break;
+    case 1: MyChoiceString = TEXT("바위"); break;
+    case 2: MyChoiceString = TEXT("보"); break;
+    }
 
- //   switch (MyValue)
- //   {
- //   case 0: MyChoiceString = TEXT("가위"); break;
- //   case 1: MyChoiceString = TEXT("바위"); break;
- //   case 2: MyChoiceString = TEXT("보"); break;
- //   }
+    UE_LOG(LogTemp, Warning, TEXT("적: %s"), *EnemyChoiceString);
+    UE_LOG(LogTemp, Warning, TEXT("나: %s"), *MyChoiceString);
 
- //   UE_LOG(LogTemp, Warning, TEXT("적: %s"), *EnemyChoiceString);
- //   UE_LOG(LogTemp, Warning, TEXT("나: %s"), *MyChoiceString);
-
- //   if (Enemy == MyValue)
- //   {
- //       UE_LOG(LogTemp, Warning, TEXT("비겼다"));
- //   }
- //   else if ((MyValue - Enemy + 3) % 3 == 1) // 핵심: 간단해진 승리 조건
- //   {
- //       UE_LOG(LogTemp, Warning, TEXT("승리!"));
- //   }
- //   else
- //   {
- //       UE_LOG(LogTemp, Warning, TEXT("패배!"));
- //   }
+    if (Enemy == MyValue)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("비겼다"));
+    }
+    else if ((MyValue - Enemy + 3) % 3 == 1) // 핵심: 간단해진 승리 조건
+    {
+        UE_LOG(LogTemp, Warning, TEXT("승리!"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("패배!"));
+    }
 
 	//int32 MyDamageInput = 10;
 	//int32 EnemyHPInput = 15;
@@ -348,20 +349,20 @@ void UMyGameInstance::Init()
 //FString Temp = Win;
 //Scissors = TEXT("핑킹가위");
 
-int32 Enemy = FMath::RandRange(0, 2); //0~2
-int32 MyValue = FMath::RandRange(0, 2);
-
-FString EnemyAttack;
-FString MyAttack;
-
-//랜덤으로 생성 된 숫자를 문자로 변환해보자
-
-MyAttack = SetAttack(MyValue);
-EnemyAttack = SetAttack(Enemy);
-
-FString Rsult = Judge(MyValue, Enemy);
-
-UE_LOG(LogTemp, Warning, TEXT("내가 낸 패 : %s 적이 낸 패 : %s %s!"), *MyAttack, *EnemyAttack, *Rsult);
+//int32 Enemy = FMath::RandRange(0, 2); //0~2
+//int32 MyValue = FMath::RandRange(0, 2);
+//
+//FString EnemyAttack;
+//FString MyAttack;
+//
+////랜덤으로 생성 된 숫자를 문자로 변환해보자
+//
+//MyAttack = SetAttack(MyValue);
+//EnemyAttack = SetAttack(Enemy);
+//
+//FString Rsult = Judge(MyValue, Enemy);
+//
+//UE_LOG(LogTemp, Warning, TEXT("내가 낸 패 : %s 적이 낸 패 : %s %s!"), *MyAttack, *EnemyAttack, *Rsult);
 
 }
 
